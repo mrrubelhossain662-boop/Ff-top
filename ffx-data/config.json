@@ -24,5 +24,7 @@
     "pop": "img-pop-1794248201040.jpg"
   },
   "prod": null,
-  "texts": null
+  "texts": {
+    "playUrl": "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://play.google.com/store/apps%3Fhl%3Den&ved=2ahUKEwiSh5bNv_uXAxU71DQHHQfVLdoQFnoECCYQAQ&sqi=2&usg=AOvVaw3ewPq5gXrxPdaOfBOrb7CV"
+  }
 }
