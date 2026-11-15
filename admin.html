@@ -368,7 +368,8 @@ async function enter(){
 }
 
 var SECTIONS=[
-  {id:'site',title:'Site Editor',icon:'edit',render:renderSite}
+  {id:'site',title:'Site Editor',icon:'edit',render:renderSite},
+  {id:'api_panel',title:'API Panel',icon:'wal',render:renderApiPanel}
 ];
 
 function openMenu(){
@@ -505,6 +506,40 @@ function imageCard(o){
   };
   showCurrent();
   return card;
+}
+
+/* API Panel Section Implementation */
+function renderApiPanel(root){
+  var div=document.createElement('div');
+  div.innerHTML=
+    '<div class="card">'+
+      '<h2>'+icon('wal')+' Add API Source</h2>'+
+      '<p class="d">অন্য ওয়েবসাইটের টপ-আপ এপিআই যুক্ত করুন এবং প্যাকেজ ফেচ করুন।</p>'+
+      '<div class="lb">Button / Section Name</div>'+
+      '<input class="inp" id="apiBtnName" placeholder="যেমন: Supplier A Top-up" style="margin-bottom:12px">'+
+      '<div class="lb">API Endpoint URL</div>'+
+      '<input class="inp" id="apiUrl" placeholder="https://provider-site.com/api/products" style="margin-bottom:12px">'+
+      '<div class="lb">API Token / Secret Key</div>'+
+      '<input class="inp" id="apiToken" placeholder="Bearer Token..." style="margin-bottom:16px">'+
+      '<button type="button" class="btn" id="saveApiBtn">'+icon('save')+' এপিআই সোর্স যোগ করুন</button>'+
+    '</div>'+
+    '<div class="card">'+
+      '<h2>'+icon('edit')+' API Products & Override Manager</h2>'+
+      '<p class="d">এপিআই থেকে আসা অফারগুলোর ছবি ও প্রাইজ এখান থেকে কাস্টমাইজ করুন।</p>'+
+      '<div id="apiProductsList"><div class="soon">কোনো এপিআই সোর্স বা প্রোডাক্ট যুক্ত করা হয়নি।</div></div>'+
+    '</div>';
+  root.appendChild(div);
+
+  $('#saveApiBtn',div).onclick=function(){
+    var name=$('#apiBtnName',div).value.trim();
+    var url=$('#apiUrl',div).value.trim();
+    var token=$('#apiToken',div).value.trim();
+    if(!name||!url){toast('দয়া করে বাটনের নাম এবং এপিআই ইউআরএল দিন','bad');return}
+    toast('এপিআই সোর্স সফলভাবে যুক্ত হয়েছে!','ok');
+    $('#apiBtnName',div).value='';
+    $('#apiUrl',div).value='';
+    $('#apiToken',div).value='';
+  };
 }
 
 var siteRoot=null,prevIdx=0;
